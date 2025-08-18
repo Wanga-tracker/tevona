@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500&display=swap');
+
+/* Global body styles */
+html, body {
+  @apply bg-slate-950 text-slate-100 font-inter;
+}
+
+/* Smooth animations */
+* {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Neon hover utility */
+.neon-hover {
+  @apply transition-all duration-300 ease-in-out;
+}
+.neon-hover:hover {
+  box-shadow: 0 0 10px var(--tw-shadow-color),
+              0 0 20px var(--tw-shadow-color);
+  transform: scale(1.02);
+}
+
+/* Neon text */
+.neon-text {
+  text-shadow: 0 0 5px currentColor,
+               0 0 10px currentColor,
+               0 0 20px currentColor;
+}
+
+/* Card base */
+.glass-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  @apply rounded-2xl p-6;
+}
