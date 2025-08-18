@@ -1,98 +1,69 @@
 "use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { Download, PlayCircle, Cpu, Brush } from "lucide-react";
+
+const features = [
+  {
+    title: "Quick Download",
+    desc: "Experience a much faster downloader built for speed and simplicity.",
+    icon: <Download className="w-8 h-8 text-primary" />,
+  },
+  {
+    title: "Streaming",
+    desc: "We added a faster, smoother streamer for your favorite content.",
+    icon: <PlayCircle className="w-8 h-8 text-accent" />,
+  },
+  {
+    title: "Creative Tools",
+    desc: "Image editor, PDF tools, charts, and more in one place.",
+    icon: <Brush className="w-8 h-8 text-highlight" />,
+  },
+  {
+    title: "Code Playground",
+    desc: "Run Python, Node, Java, and C++ with a real-time editor.",
+    icon: <Cpu className="w-8 h-8 text-primary" />,
+  },
+];
 
 export default function Home() {
-  const features = [
-    {
-      title: "Name Update",
-      desc: "We rebranded from Wanga Media Services to Tevona for version 2.",
-    },
-    {
-      title: "Quick Download",
-      desc: "Experience a much faster downloader built for speed and simplicity.",
-    },
-    {
-      title: "Streaming",
-      desc: "We added a faster, smoother streamer for your favorite content.",
-    },
-    {
-      title: "Downloader",
-      desc: "Grab videos, audio, and documents instantly.",
-    },
-    {
-      title: "Creative Tools",
-      desc: "Image editor, PDF tools, charts, and more in one place.",
-    },
-    {
-      title: "Code Playground",
-      desc: "Run Python, Node, Java, and C++ with a real-time editor.",
-    },
-    {
-      title: "Community Hub",
-      desc: "Share snippets, bots, and templates with the Tevona community.",
-    },
-    {
-      title: "Tevona AI Guide",
-      desc: "Your personal assistant to guide you across all tools.",
-    },
-  ];
-
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center">
-      {/* Hero */}
-      <section className="flex flex-col justify-center items-center text-center py-24 px-6 max-w-4xl">
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-5xl font-bold text-slate-100 mb-4"
-        >
-          Welcome to <span className="text-sky-400 neon-text">Tevona Tech</span>
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-lg text-slate-300 mb-8"
-        >
-          Download. Create. Stream. Have fun.
-        </motion.p>
+    <main className="min-h-screen bg-dark text-text flex flex-col items-center justify-center p-6">
+      <motion.h1
+        className="text-4xl md:text-5xl font-bold mb-2 text-primary"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        Welcome to Tevona Tech
+      </motion.h1>
+      <p className="text-lg text-gray-300 mb-6">
+        Download. Create. Stream. Have fun.
+      </p>
 
-        <motion.div whileHover={{ scale: 1.05 }}>
-          <Link
-            href="/dashboard"
-            className="px-12 py-4 bg-sky-500 text-white rounded-full shadow-lg neon-hover text-lg font-semibold"
-          >
-            Enter Dashboard
-          </Link>
-        </motion.div>
-      </section>
+      {/* Dashboard Button */}
+      <motion.div whileHover={{ scale: 1.05 }} className="mb-10">
+        <Link
+          href="/dashboard"
+          className="px-12 py-4 bg-primary text-white rounded-full shadow-lg neon-hover text-lg font-semibold"
+        >
+          Enter Dashboard
+        </Link>
+      </motion.div>
 
-      {/* What's New */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl px-6 pb-24">
-        {features.map((item, idx) => (
+      {/* Feature Cards */}
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl w-full">
+        {features.map((item, i) => (
           <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.1, duration: 0.5 }}
-            viewport={{ once: true }}
-            className="glass-card hover:shadow-sky-500/40"
+            key={i}
+            className="p-6 bg-card rounded-2xl shadow-md hover:shadow-lg transition flex flex-col items-start"
+            whileHover={{ y: -5 }}
           >
-            <h3 className="text-xl font-semibold text-sky-400 mb-2">
-              {item.title}
-            </h3>
-            <p className="text-slate-300">{item.desc}</p>
+            {item.icon}
+            <h3 className="text-xl font-semibold mt-4 mb-2">{item.title}</h3>
+            <p className="text-gray-400">{item.desc}</p>
           </motion.div>
         ))}
-      </section>
-
-      {/* Footer */}
-      <footer className="w-full py-6 border-t border-slate-800 text-center text-slate-400 text-sm">
-        © {new Date().getFullYear()} Tevona Tech — Built for creators.
-      </footer>
+      </div>
     </main>
   );
-      }
+  }
