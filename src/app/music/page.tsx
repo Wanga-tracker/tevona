@@ -8,6 +8,10 @@ type NowPlaying = {
   type: "audio" | "video";
 } | null;
 
+// ✅ Centralize API base
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_URL || "http://fi9.bot-hosting.net:22097";
+
 export default function MusicDownloader() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<any[]>([]);
@@ -21,9 +25,7 @@ export default function MusicDownloader() {
     setLoading(true);
     try {
       const res = await fetch(
-        `https://tevona-api.onrender.com/music/search?q=${encodeURIComponent(
-          searchTerm
-        )}`
+        `${API_BASE}/music/search?q=${encodeURIComponent(searchTerm)}`
       );
       const data = await res.json();
       setResults(data);
@@ -35,7 +37,7 @@ export default function MusicDownloader() {
   };
 
   const handleDownload = (videoId: string, type: "audio" | "video") => {
-    window.location.href = `https://tevona-api.onrender.com/music/download?id=${videoId}&type=${type}`;
+    window.location.href = `${API_BASE}/music/download?id=${videoId}&type=${type}`;
   };
 
   const categories = [
@@ -153,7 +155,7 @@ export default function MusicDownloader() {
                 <div className="mt-4">
                   {nowPlaying.type === "audio" ? (
                     <audio
-                      src={`https://tevona-api.onrender.com/music/download?id=${song.videoId}&type=audio`}
+                      src={`${API_BASE}/music/download?id=${song.videoId}&type=audio`}
                       controls
                       autoPlay
                       className="w-full"
@@ -176,4 +178,4 @@ export default function MusicDownloader() {
       </div>
     </main>
   );
-}
+  }
