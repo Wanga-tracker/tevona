@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-// @ts-expect-error yt-search has no type declarations
 import yts from "yt-search";
 
 interface YTVideo {
