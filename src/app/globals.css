@@ -2,10 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* custom glow effects */
+/* Neon hover glow */
 .neon-hover {
   transition: all 0.3s ease-in-out;
 }
 .neon-hover:hover {
-  box-shadow: 0 0 15px #3b82f6, 0 0 30px #22d3ee;
+  box-shadow: 0 0 15px #38bdf8, 0 0 30px #22d3ee;
 }
+
+/* Neon text glow */
+.neon-text {
+  text-shadow: 0 0 8px #38bdf8, 0 0 16px #22d3ee;
+}
+
+/* Glass card effect */
+.glass-card {
+  background: rgba(30, 41, 59, 0.6); /* slate-800 with opacity */
+  backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+  }
