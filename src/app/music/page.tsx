@@ -21,7 +21,7 @@ const DEFAULT_API = process.env.NEXT_PUBLIC_API_URL || "https://tevona-api.onren
 async function trySearch(apiBase: string, q: string) {
   const attempts = [
     `${apiBase}/api/search?q=${encodeURIComponent(q)}`,
-    `${apiBase}/music/search?q=${encodeURIComponent(q)}`,
+    `${apiBase}/api/search?q=${encodeURIComponent(q)}`,
   ];
   for (const url of attempts) {
     try {
@@ -42,7 +42,7 @@ async function tryDownloadUrl(apiBase: string, id: string) {
   // Return the URL we should use to stream/download mp3
   const attempts = [
     `${apiBase}/api/download/mp3?id=${id}`,
-    `${apiBase}/music/download?id=${id}&type=audio`,
+    `${apiBase}/api/download?id=${id}&type=audio`,
   ];
   for (const url of attempts) {
     try {
